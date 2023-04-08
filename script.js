@@ -47,3 +47,23 @@ function compressSparseMatrix(sparseMatrix) {
 
     return [rowIndices, colIndices, values];
 }
+
+function decompressSparseMatrix(compressedSparseMatrix) {
+    const len = compressedSparseMatrix[0].length;
+    const rowsInSparseMatrix = Math.max(...compressedSparseMatrix[0]) + 1;
+    const colsInSparseMatrix = Math.max(...compressedSparseMatrix[1]) + 1;
+    const sparseMatrix = [];
+
+    for (let i = 0; i < rowsInSparseMatrix; i++) {
+        sparseMatrix[i] = [];
+        for (let j = 0; j < colsInSparseMatrix; j++) {
+            sparseMatrix[i][j] = 0;
+        }
+    }
+
+    for (let i = 0; i < len; i++) {
+        sparseMatrix[compressedSparseMatrix[0][i]][compressedSparseMatrix[1][i]] = compressedSparseMatrix[2][i];
+    }
+
+    return sparseMatrix;
+}
