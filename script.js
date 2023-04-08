@@ -15,3 +15,11 @@ function getNumberOfNonZerosMatrixItems(sparseMatrix) {
 
     return nonZerosItems;
 }
+
+function IsPossibleToSaveMemoryForMatrix(matrix) {
+    const rows = matrix.length;
+    const cols = matrix[0].length;
+    const nonZerosItems = getNumberOfNonZerosMatrixItems(matrix);
+
+    return (3 * nonZerosItems) < (rows * cols); 
+}
