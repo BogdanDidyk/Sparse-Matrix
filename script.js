@@ -6,6 +6,14 @@ function printMatrix(matrix, itemSeparator = " ") {
     matrix.forEach(row => console.log(getJoinedArrayStr(row, itemSeparator)));
 }
 
+function getCountOfArrayItem(arr, item) {
+    return arr.filter(itm => itm === item).length;
+}
+
+function getCountOfMatrixItem(matrix, item) {
+    return matrix.reduce((count, row) => count + getCountOfArrayItem(row, item), 0);
+}
+
 function getNumberOfNonZerosMatrixItems(sparseMatrix) {
     const rows = sparseMatrix.length;
     const cols = sparseMatrix[0].length;
