@@ -1,5 +1,9 @@
-function printMatrix(matrix) {
-    matrix.forEach(row => console.log(row.join(" ")));
+function getJoinedArrayStr(arr, separator = ", ") {
+    return arr.join(separator);
+}
+
+function printMatrix(matrix, itemSeparator = " ") {
+    matrix.forEach(row => console.log(getJoinedArrayStr(row, itemSeparator)));
 }
 
 function getNumberOfNonZerosMatrixItems(sparseMatrix) {
