@@ -18,26 +18,15 @@ function getMatrix(rows, cols, fillItem = 0) {
     return Array.from({length: rows}, (_ => Array.from({length: cols}).fill(fillItem)));
 }
 
-function getNumberOfNonZerosMatrixItems(sparseMatrix) {
-    const rows = sparseMatrix.length;
-    const cols = sparseMatrix[0].length;
-    let nonZerosItems = 0;
-
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            if (sparseMatrix[i][j] != 0) nonZerosItems++;
-        }
-    }
-
-    return nonZerosItems;
-}
-
 function IsPossibleToSaveMemoryForMatrix(matrix) {
+    const COUNT_OF_NUMBERS_TO_STORE_INFO = 3;
     const rows = matrix.length;
     const cols = matrix[0].length;
-    const nonZerosItems = getNumberOfNonZerosMatrixItems(matrix);
+    const allItemsCount = rows * cols;
+    const zerosCount = getCountOfMatrixItem(matrix, 0);
+    const nonZerosCount = allItemsCount - zerosCount;
 
-    return (3 * nonZerosItems) < (rows * cols); 
+    return COUNT_OF_NUMBERS_TO_STORE_INFO * nonZerosCount < allItemsCount; 
 }
 
 function compressSparseMatrix(sparseMatrix) {
