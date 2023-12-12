@@ -14,6 +14,10 @@ function getCountOfMatrixItem(matrix, item) {
     return matrix.reduce((count, row) => count + getCountOfArrayItem(row, item), 0);
 }
 
+function getMatrix(rows, cols, fillItem = 0) {
+    return Array.from({length: rows}, (_ => Array.from({length: cols}).fill(fillItem)));
+}
+
 function getNumberOfNonZerosMatrixItems(sparseMatrix) {
     const rows = sparseMatrix.length;
     const cols = sparseMatrix[0].length;
