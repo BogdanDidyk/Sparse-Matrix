@@ -29,11 +29,11 @@ function IsPossibleToSaveMemoryForMatrix(matrix) {
     return COUNT_OF_NUMBERS_TO_STORE_INFO * nonZerosCount < allItemsCount; 
 }
 
-function compressSparseMatrix(sparseMatrix) {
-    if (!IsPossibleToSaveMemoryForMatrix(sparseMatrix)) return sparseMatrix;
+function compressSparseMatrix(matrix) {
+    if (!IsPossibleToSaveMemoryForMatrix(matrix)) return matrix;
 
-    const rows = sparseMatrix.length;
-    const cols = sparseMatrix[0].length;
+    const rows = matrix.length;
+    const cols = matrix[0].length;
     const rowIndices = [];
     const colIndices = [];
     const values = [];
@@ -41,10 +41,10 @@ function compressSparseMatrix(sparseMatrix) {
 
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
-            if (sparseMatrix[i][j] != 0) {
+            if (matrix[i][j] != 0) {
                 rowIndices[index] = i;
                 colIndices[index] = j;
-                values[index] = sparseMatrix[i][j];
+                values[index] = matrix[i][j];
                 index++;
             }
         }
@@ -53,10 +53,10 @@ function compressSparseMatrix(sparseMatrix) {
     return [rowIndices, colIndices, values];
 }
 
-function decompressSparseMatrix(compressedSparseMatrix) {
-    const rowIndices = compressedSparseMatrix[0];
-    const colIndices = compressedSparseMatrix[1];
-    const values = compressedSparseMatrix[2];
+function decompressToSparseMatrix(matrix) {
+    const rowIndices = matrix[0];
+    const colIndices = matrix[1];
+    const values = matrix[2];
     const len = rowIndices.length;
     const sparseMatrixRows = Math.max(...rowIndices) + 1;
     const sparseMatrixCols = Math.max(...colIndices) + 1;
@@ -76,7 +76,7 @@ const sparseMatrix1 = [
     [0, 2, 6, 0, 0]
 ];
 const compressedMatrix1 = compressSparseMatrix(sparseMatrix1);
-printMatrix(compressedMatrix1);
+printMatrix(compressedMatrix1, "  ");
 console.log("");
 
 const compressedMatrix2 = [
@@ -84,5 +84,5 @@ const compressedMatrix2 = [
     [1, 0, 2, 1, 3, 2, 4, 3, 5, 4, 6],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
-const sparseMatrix2 = decompressSparseMatrix(compressedMatrix2);
-printMatrix(sparseMatrix2);
+const sparseMatrix2 = decompressToSparseMatrix(compressedMatrix2);
+printMatrix(sparseMatrix2, "  ");
