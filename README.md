@@ -1,4 +1,4 @@
-# Saddle Points Of Matrix
+# Sparse Matrix
 This code implements an algorithm for encoding and decoding a sparse matrix.
 
 ## Example
